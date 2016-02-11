@@ -14,7 +14,7 @@ ${_password}    WorkingSoftware
 Login Success with no remember me feature should display welcome page
       Go to Login by menu
       Fill in valid username and password
-      Disable Remember me feature
+      Unselect Checkbox Remember me feature
       Try to login
 
 
@@ -25,8 +25,8 @@ Go to Login by menu
 Fill in valid username and password
     Input Text    user_login    ${_userlogin}
     Input Password    user_pass   ${_password}
-Disable Remember me feature
-    click Element    rememberme
+Unselect Checkbox Remember me feature
+    Unselect Checkbox    rememberme
 
 Try to login
     Click Element    wp-submit
