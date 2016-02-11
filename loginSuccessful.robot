@@ -76,9 +76,25 @@ Post Blog Entry with title and content
       Select Checkbox        in-category-1
       Scroll Page To Location    0    0
       Wait Until Element Is Enabled     save-post
+      focus     save-post
       Click Element     save-post
+      Wait Until Page Contains    Edit Post    timeout=20
 
-
+# Post Blog Entry with title and content and image
+#         Click Element    //*[@id="menu-posts"]/a/div[3]
+#         Wait Until Page Contains    Posts
+#         Click Element    //*[@id="wpbody-content"]/div[3]/h1/a
+#         Wait Until Page Contains    Add New Post
+#         Input Text    title      สรุปผลการดำเนินงานของบจ.และรวมของบริษัทย่อย ประจำปี (F45-3)
+#         Click Element         content-html
+#         Input Text    content      สรุปผลการดำเนินงานของบจ.และรวมของบริษัทย่อย (F45-3)
+#         Scroll Page To Location    0    2000
+#         Wait Until Page Contains      Uncategorized
+#         Click Element   //*[@id="category-tabs"]/li[1]/a
+#         Select Checkbox        in-category-1
+#         Scroll Page To Location    0    0
+#         Wait Until Element Is Enabled     save-post
+#         Click Element     save-post
 
 
       # Login success with remember me feature should display welcome page
