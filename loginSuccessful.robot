@@ -21,20 +21,20 @@ Login success with no remember me feature should display welcome page
 Login fail with invalid credential with no remember me feature should display Error
 
       Go to Login by menu
-      Fill in username and password   nongyao    test
+      Fill in username and password    kirkkiat    test
       Unselect Checkbox Remember me feature
       Try to error login    ${error_msg_pwd}
 
 
 Login fail with valid username and invalid password with no remember me feature should display Error
       Go to Login by menu
-      Fill in username and password   sprint3r4    test
+      Fill in username and password     sprint3r4    test
       Unselect Checkbox Remember me feature
       Try to error login    ${error_msg_pwd}
 
 Login fail with invalid username and valid password with no remember me feature should display Error
       Go to Login by menu
-      Fill in username and password   nongyao    WorkingSoftware
+      Fill in username and password    kirkkiat    WorkingSoftware
       Unselect Checkbox Remember me feature
       Try to error login    ${error_msg_pwd}
 
@@ -46,7 +46,7 @@ Login fail with blank username with no remember me feature should display Error
 
 Login fail with blank password with no remember me feature should display Error
       Go to Login by menu
-      Fill in username and password    nongyao      ${EMPTY}
+      Fill in username and password     kirkkiat      ${EMPTY}
       Unselect Checkbox Remember me feature
       Try to error login    ${error_msg_pwdempty}
 
@@ -55,6 +55,28 @@ Login fail with blank username and password with no remember me feature should d
       Fill in username and password     ${EMPTY}      ${EMPTY}
       Unselect Checkbox Remember me feature
       Try to blank login
+
+# Post Blog Entry with title and content
+#       Go to Login by menu
+#       Fill in username and password   sprint3r4    WorkingSoftware
+#       Unselect Checkbox Remember me feature
+#       Try to login
+#       Maximize Browser Window
+#       Click Element    //*[@id="menu-posts"]/a/div[3]
+#       Wait Until Page Contains    Posts
+#       Click Element   //*[@id="wpbody-content"]/div[3]/h1/a
+#       Wait Until Page Contains    Add New Post
+#       Input Text    title   testpost
+#       Click Element   content-html
+#       Input Text    content   testcontent
+#       Click Element   //*[@id="category-tabs"]/li[1]/a
+#       Select Checkbox        in-category-1
+#       Wait Until Element Is Enabled     save-post
+#       Click Element     save-post
+#       Wait Until Page Contains    Edit Post
+      #Click Element     publish
+      # Wait Until Page Contains    Post published
+      # Click Element     //*[@id="message"]/p/a
 
 
       # Login success with remember me feature should display welcome page
@@ -71,12 +93,12 @@ Login fail with blank username and password with no remember me feature should d
 *** Keywords ***
 Go to Login by menu
     Click Element   //*[@id="masthead"]/button
-    Wait Until Page Contains    Recent Comments
+    Wait Until Page Contains    Log in
     Click Element   //*[@id="meta-2"]/ul/li[2]/a
 
 Go to Admin Page
     Click Element   //*[@id="masthead"]/button
-    Wait Until Page Contains    Recent Comments
+    Wait Until Page Contains    Log out
     Click Element   //*[@id="meta-2"]/ul/li[1]/a
 
 Fill in username and password
@@ -104,6 +126,8 @@ Try to error login
 Try to blank login
     Click Element    wp-submit
     Checkbox Should Be Selected     rememberme
+    Go To      ${url}
+    Wait Until Page Contains    sprint3r4
 
 Logout page
     Click Element   //*[@id="wp-admin-bar-my-account"]/a/img
