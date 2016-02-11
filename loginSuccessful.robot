@@ -9,10 +9,11 @@ ${url}    https://sprint3r4.wordpress.com/
 ${error_msg_pwd}    ERROR: The password you entered for the email or username
 ${error_msg_userempty}    ERROR: The email or username field is empty.
 ${error_msg_pwdempty}     ERROR: The password field is empty.
+
 *** Test Cases ***
 Login success with no remember me feature should display welcome page
       Go to Login by menu
-      Fill in username and password   sprint3r4    WorkingSoftware
+      Fill in username and password     sprint3r4      WorkingSoftware
       Unselect Checkbox Remember me feature
       Try to login
       Logout page
@@ -40,7 +41,7 @@ Login fail with invalid username and valid password with no remember me feature 
 
 Login fail with blank username with no remember me feature should display Error
       Go to Login by menu
-      Fill in username and password   ${EMPTY}    WorkingSoftware
+      Fill in username and password     ${EMPTY}    WorkingSoftware
       Unselect Checkbox Remember me feature
       Try to error login    ${error_msg_userempty}
 
@@ -56,27 +57,28 @@ Login fail with blank username and password with no remember me feature should d
       Unselect Checkbox Remember me feature
       Try to blank login
 
-# Post Blog Entry with title and content
-#       Go to Login by menu
-#       Fill in username and password   sprint3r4    WorkingSoftware
-#       Unselect Checkbox Remember me feature
-#       Try to login
-#       Maximize Browser Window
-#       Click Element    //*[@id="menu-posts"]/a/div[3]
-#       Wait Until Page Contains    Posts
-#       Click Element   //*[@id="wpbody-content"]/div[3]/h1/a
-#       Wait Until Page Contains    Add New Post
-#       Input Text    title   testpost
-#       Click Element   content-html
-#       Input Text    content   testcontent
-#       Click Element   //*[@id="category-tabs"]/li[1]/a
-#       Select Checkbox        in-category-1
-#       Wait Until Element Is Enabled     save-post
-#       Click Element     save-post
-#       Wait Until Page Contains    Edit Post
-      #Click Element     publish
-      # Wait Until Page Contains    Post published
-      # Click Element     //*[@id="message"]/p/a
+Post Blog Entry with title and content
+      Go to Login by menu
+      Fill in username and password     sprint3r4    WorkingSoftware
+      Unselect Checkbox Remember me feature
+      Try to login
+      Maximize Browser Window
+      Click Element    //*[@id="menu-posts"]/a/div[3]
+      Wait Until Page Contains    Posts
+      Click Element    //*[@id="wpbody-content"]/div[3]/h1/a
+      Wait Until Page Contains    Add New Post
+      Input Text    title      สรุปผลการดำเนินงานของบจ.และรวมของบริษัทย่อย ประจำปี (F45-3)
+      Click Element         content-html
+      Input Text    content      สรุปผลการดำเนินงานของบจ.และรวมของบริษัทย่อย (F45-3)
+      Scroll Page To Location    0    2000
+      Wait Until Page Contains      Uncategorized
+      Click Element   //*[@id="category-tabs"]/li[1]/a
+      Select Checkbox        in-category-1
+      Scroll Page To Location    0    0
+      Wait Until Element Is Enabled     save-post
+      Click Element     save-post
+
+
 
 
       # Login success with remember me feature should display welcome page
@@ -91,6 +93,11 @@ Login fail with blank username and password with no remember me feature should d
       #       Logout page
 
 *** Keywords ***
+
+Scroll Page To Location
+    [Arguments]    ${x_location}    ${y_location}
+    Execute JavaScript    window.scrollTo(${x_location},${y_location})
+
 Go to Login by menu
     Click Element   //*[@id="masthead"]/button
     Wait Until Page Contains    Log in
