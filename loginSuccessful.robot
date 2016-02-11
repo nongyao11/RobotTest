@@ -20,15 +20,31 @@ Login success with no remember me feature should display welcome page
 
 
 Login fail with invalid credential with no remember me feature should display Error
-    Go to Login by menu
-    Fill in username and password   test    test
-    Unselect Checkbox Remember me feature
-    Try to error login
+      Go to Login by menu
+      Fill in username and password   test    test
+      Unselect Checkbox Remember me feature
+      Try to error login
+
+Login success with remember me feature should display welcome page
+      Go to Login by menu
+      Fill in username and password   sprint3r4    WorkingSoftware
+      Select Checkbox Remember me feature
+      Try to login
+      Close Browser
+      Open Browser    ${url}
+      Go to Admin Page
+
+
+
 
 *** Keywords ***
 Go to Login by menu
     Click Element   //*[@id="masthead"]/button
     Click Element   //*[@id="meta-2"]/ul/li[2]/a
+
+Go to Admin Page
+    Click Element   //*[@id="masthead"]/button
+    Click Element   //*[@id="meta-2"]/ul/li[1]/a
 
 Fill in username and password
     [arguments]    ${_username}    ${_password}
@@ -38,6 +54,9 @@ Fill in username and password
 Unselect Checkbox Remember me feature
     Unselect Checkbox    rememberme
 
+Select Checkbox Remember me feature
+    Select Checkbox    rememberme
+
 Try to login
     Click Element    wp-submit
     Wait Until Page Contains    Welcome to WordPress.com!
@@ -45,6 +64,7 @@ Try to login
 Try to error login
     Click Element    wp-submit
     Wait Until Page Contains    ERROR: The password you entered for the email or username ${_userlogin} is incorrect.
+    Go To      ${url}
 
 Logout page
     Click Element   //*[@id="wp-admin-bar-my-account"]/a/img
