@@ -40,10 +40,12 @@ Login success with remember me feature should display welcome page
 *** Keywords ***
 Go to Login by menu
     Click Element   //*[@id="masthead"]/button
+    Wait Until Page Contains    Recent Comments
     Click Element   //*[@id="meta-2"]/ul/li[2]/a
 
 Go to Admin Page
     Click Element   //*[@id="masthead"]/button
+    Wait Until Page Contains    Recent Comments
     Click Element   //*[@id="meta-2"]/ul/li[1]/a
 
 Fill in username and password
